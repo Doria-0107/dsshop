@@ -2,5 +2,6 @@
 需完善的功能.text
 /trade/Dsshop/node_modules/
 admin/config/dev.env.js
+admin/config/prod.env.js
 trade/Dsshop/App.vue
 trade/Dsshop/unpackage/
