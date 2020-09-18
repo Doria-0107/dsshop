@@ -89,44 +89,47 @@
 			},
 			//确认支付
 			confirm: async function() {
-				const that = this
-				switch(this.payType){
-					case 1: // 微信支付
-					Pay.wxPay({
-						id: this.id
-					},function(res){
-						uni.requestPayment({
-							timeStamp: res.timestamp,
-							nonceStr: res.nonceStr,
-							package: res.package,
-							signType: res.signType,
-							paySign: res.paySign,
-							success(res) {
-							  // console.log(res)
-							  // 订阅消息
-							  authMsg(['4iOC-HyjJeKK5HiYORcOtrKHvu2Ho1ScVF0aqP3KkzQ'])
-							  uni.redirectTo({
-							  	url: '/pages/money/paySuccess'
-							  })
-							},
-							fail(res) {
-								that.$api.msg('支付失败，请重新支付')
-							}
-						})
-						
-					})
-					break
-					case 3:	// 余额支付
-					Pay.balancePay({
-						id: this.id
-					},function(res){
-						authMsg(['4iOC-HyjJeKK5HiYORcOtrKHvu2Ho1ScVF0aqP3KkzQ'])
-						uni.redirectTo({
-							url: '/pages/money/paySuccess'
-						})
-					})
-					break
-				}
+                uni.switchTab({
+                    url: '/pages/index/index',
+                })
+				// const that = this
+				// switch(this.payType){
+				// 	case 1: // 微信支付
+				// 	Pay.wxPay({
+				// 		id: this.id
+				// 	},function(res){
+				// 		uni.requestPayment({
+				// 			timeStamp: res.timestamp,
+				// 			nonceStr: res.nonceStr,
+				// 			package: res.package,
+				// 			signType: res.signType,
+				// 			paySign: res.paySign,
+				// 			success(res) {
+				// 			  // console.log(res)
+				// 			  // 订阅消息
+				// 			  authMsg(['4iOC-HyjJeKK5HiYORcOtrKHvu2Ho1ScVF0aqP3KkzQ'])
+				// 			  uni.redirectTo({
+				// 			  	url: '/pages/money/paySuccess'
+				// 			  })
+				// 			},
+				// 			fail(res) {
+				// 				that.$api.msg('支付失败，请重新支付')
+				// 			}
+				// 		})
+				//
+				// 	})
+				// 	break
+				// 	case 3:	// 余额支付
+				// 	Pay.balancePay({
+				// 		id: this.id
+				// 	},function(res){
+				// 		authMsg(['4iOC-HyjJeKK5HiYORcOtrKHvu2Ho1ScVF0aqP3KkzQ'])
+				// 		uni.redirectTo({
+				// 			url: '/pages/money/paySuccess'
+				// 		})
+				// 	})
+				// 	break
+				// }
 			},
 		}
 	}

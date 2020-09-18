@@ -352,6 +352,11 @@ export default {
 				});
 				newContent = newContent.replace(/<br[^>]*\/>/gi, '');
 				newContent = newContent.replace(/\<img/gi, '<img style="vertical-align:top;max-width:100%;height:auto;display:inline-block;margin:10rpx auto;"');
+                //控制li显示
+                newContent = newContent.replace(/<li[^>]*>/gi,function(match,capture){
+                    match = match.replace(/style="[^"]+"/gi, 'style="margin: 0px 0px 5px; padding: 0px 0px 0px 42px; display:inline-block; width:35%;"')
+                    return match
+                })
 				return newContent;
 			}
 		}
