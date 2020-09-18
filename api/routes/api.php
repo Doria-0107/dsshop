@@ -86,6 +86,7 @@ Route::prefix('v1')->namespace('v1')->group(function () {
         Route::post('category', 'categoryController@store')->middleware(['permissions:CreateCategory']);    //分类添加保存
         Route::put('category/{photo}', 'categoryController@update')->middleware(['permissions:EditCategory']);    //分类编辑保存
         Route::delete('category/{photo}', 'categoryController@destroy')->middleware(['permissions:DeleteCategory']);    //分类删除
+        Route::get('getCategory', 'categoryController@getIndexCategory');    //首页分类
 
         //--规格
         Route::get('specification', 'specificationController@index')->middleware(['permissions:SpecificationList']);    //规格列表
@@ -209,6 +210,9 @@ Route::prefix('v1')->namespace('v1')->group(function () {
         Route::get('collect/{photo}', 'CollectController@show');    //详情
         Route::post('collect', 'CollectController@store');    //添加保存
         Route::post('collectDelete/{photo}', 'CollectController@destroy');    //删除
+
+        //分类
+        Route::get('getCategory', 'categoryController@getIndexCategory');    //列表
     });
     // 插件前台
     Route::prefix('app')->namespace('Plugin')->middleware(['appverify','auth:web'])->group(function () {

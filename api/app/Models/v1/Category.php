@@ -17,6 +17,7 @@ class Category extends Model
     public static $withoutAppends = false;
     const CATEGORY_STATE_YES= 0; //状态：正常
     const CATEGORY_STATE_NO= 1; //状态：隐藏
+    const CATEGORY_P_ID= 0; //分类 首页类
     protected $table = 'categorys';
 
     protected $appends = ['state_show'];

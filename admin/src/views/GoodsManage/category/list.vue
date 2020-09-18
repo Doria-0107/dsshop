@@ -140,6 +140,7 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">{{ $t('usuel.cancel') }}</el-button>
         <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">{{ $t('usuel.confirm') }}</el-button>
+        <el-button type="primary" @click="getCategory">getCategory</el-button>
       </div>
     </el-dialog>
   </div>
@@ -180,7 +181,7 @@
 </style>
 
 <script>
-import { getList, createSubmit, updateSubmit, setDelete } from '@/api/category'
+import { getList, getCategory, createSubmit, updateSubmit, setDelete } from '@/api/category'
 import waves from '@/directive/waves' // Waves directiveimport { jurisdiction } from '@/utils'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 import { getToken } from '@/utils/auth'
@@ -371,6 +372,9 @@ export default {
           })
         }
       })
+    },
+    getCategory() {
+      getCategory()
     },
     updateData() { // 更新
       this.$refs['dataForm'].validate((valid) => {

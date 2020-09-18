@@ -54,6 +54,18 @@ class categoryController extends Controller
     }
 
     /**
+     * get home page category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getIndexCategory(){
+        $q = Category::query();
+        $q->with(['resources'])->select('img');
+        $paginate=$q->where('pid',0)->select('id','name','pid')->get();;
+        return resReturn(1,$paginate);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param SubmitCategoryRequest $request

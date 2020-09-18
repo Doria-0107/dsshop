@@ -8,6 +8,14 @@ export function getList(query) {
   })
 }
 
+export function getCategory(query) {
+  return request({
+    url: 'getCategory',
+    method: 'get',
+    params: query
+  })
+}
+
 export function createSubmit(data) {
   data = Qs.parse({
     data
