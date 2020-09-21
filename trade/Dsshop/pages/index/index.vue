@@ -21,26 +21,13 @@
 		</view>
 		<!-- 分类 -->
 		<view class="cate-section">
-			<view class="cate-item" @click="navTo('/pages/product/list?fid=1&sid=3&tid=20')">
-				<image src="https://dsshop.dswjcms.com/storage/image/category/hIHaW1594624050.png" lazy-load></image>
-				<text>男士T恤</text>
-			</view>
-			<view class="cate-item" @click="navTo('/pages/product/list?fid=49&sid=51&tid=60')">
-				<image src="https://dsshop.dswjcms.com/storage/image/category/ylEI21594626437.png" lazy-load></image>
-				<text>女士T恤</text>
-			</view>
-			<view class="cate-item" @click="navTo('/pages/product/list?fid=49&sid=69&tid=73')">
-				<image src="https://dsshop.dswjcms.com/storage/image/category/iNMVW1594627177.png" lazy-load></image>
-				<text>高根鞋</text>
-			</view>
-			<view class="cate-item" @click="navTo('/pages/product/list?fid=49&sid=50&tid=53')">
-				<image src="https://dsshop.dswjcms.com/storage/image/category/zZo6m1594626068.png" lazy-load></image>
-				<text>半身裙</text>
-			</view>
-			<view class="cate-item" @click="navTo('/pages/product/list?fid=49&sid=50&tid=65')">
-				<image src="https://dsshop.dswjcms.com/storage/image/category/pPNfP1594626192.png" lazy-load></image>
-				<text>打底裙</text>
-			</view>
+		     <view v-for="(item, index) in categoryList" 
+			       :key="index"
+				   class="cate-item" 
+				   @click="navTo('/pages/product/list?fid=49&sid=3&tid=item.id')">
+						<image :src="item.resources.img" lazy-load></image>
+						<text>{{item.name}}</text>
+			 </view>
 		</view>
 		
 		<view class="ad-1">
@@ -236,6 +223,7 @@
 <script>
 import Good from '../../api/good'
 import Banner from '../../api/banner'
+import Category from '../../api/category'
 	export default {
 
 		data() {
@@ -245,6 +233,7 @@ import Banner from '../../api/banner'
 				swiperLength: 0,
 				carouselList: [],
 				goodsList: [],
+				categoryList: [],
 				adData: {}
 			};
 		},
@@ -279,6 +268,12 @@ import Banner from '../../api/banner'
 				},function(res){
 					that.goodsList = res.data
 				})
+				//商品分类
+                await Category.getCategoryList({
+                    type: 1,
+                },function(res){
+                    that.categoryList = res.data
+                })
 				
 			},
 			//轮播图切换修改背景色

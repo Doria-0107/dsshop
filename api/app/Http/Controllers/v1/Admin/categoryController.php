@@ -58,11 +58,14 @@ class categoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndexCategory(){
+    public function getIndexCategory()
+    {
         $q = Category::query();
-        $q->with(['resources'])->select('img');
-        $paginate=$q->where('pid',0)->select('id','name','pid')->get();;
-        return resReturn(1,$paginate);
+        $q->with(['resources' => function ($q) {
+            $q->select('img','image_id');
+        }]);
+        $paginate = $q->where('pid', 0)->select('id', 'name', 'pid')->get();;
+        return resReturn(1, $paginate);
     }
 
     /**
